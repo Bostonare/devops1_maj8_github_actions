@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  First_job:
-    list-files:
-      runs-on: ubuntu-latest
-      steps:
-        - name: List files
-          id: list-files
-          uses: mirko-felice/list-files-action@v3.0.5
+ 
+  list-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files
+        id: list-files
+        uses: mirko-felice/list-files-action@v3.0.5
         with:
           repo: ${{ github.repository }}
           ref: ${{ github.ref }}
@@ -21,13 +21,10 @@ jobs:
       # 1. hur ser du till att repots filer finns tillgängliga?
       #    (tips: det finns en action från GitHub själva för detta)
       # 2. lista filerna i repot
-      
-  Second_job:
-    needs: First_job
-    print-message:
-      runs-on: ubuntu-latest
-
-    # 3. se till att detta jobb endast körs efter att list-files är klart
-      steps:
-      - name: Meddelande
-        run: echo "Detta körs efter list-files"
+      # 3. se till att detta jobb endast körs efter att list-files är klart
+  print-message:
+    needs: list-files
+    runs-on: ubuntu-latest
+    steps:
+    - name: Meddelande
+      run: echo "Detta körs efter list-files"

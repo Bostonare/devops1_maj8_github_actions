@@ -10,4 +10,4 @@
       runs-on: windows-latest  # vilken runner?
       steps:
         - name: "Pipeline starting" # namnge steget
-          run: echo py python --version # vad som ska göras
+          run: echo "Pipeline started" # vad som ska göras
